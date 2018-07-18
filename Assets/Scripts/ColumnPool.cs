@@ -18,23 +18,23 @@ public class ColumnPool : MonoBehaviour {
 	private float timeSinceLastSpawned;
 
 	// Use this for initialization
-	void Start () {
-		timeSinceLastSpawned = spawnRate;
-		columns = new GameObject[columnPoolSize];
-		for (int i = 0; i < columnPoolSize; i++) {
-			columns[i] = (GameObject) Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
-		}
-	}
+	// void Start () {
+	// 	timeSinceLastSpawned = spawnRate;
+	// 	columns = new GameObject[columnPoolSize];
+	// 	for (int i = 0; i < columnPoolSize; i++) {
+	// 		columns[i] = (GameObject) Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity);
+	// 	}
+	// }
 
-	// Update is called once per frame
-	void Update () {
-		timeSinceLastSpawned += Time.deltaTime;
+	// // Update is called once per frame
+	// void Update () {
+	// 	timeSinceLastSpawned += Time.deltaTime;
 
-		if (GameController.instance.gameOver == false && timeSinceLastSpawned >= spawnRate) {
-			timeSinceLastSpawned = 0;
-			float spawnYPos = Random.Range(columnMin, columnMax);
-			columns[currentColumn].transform.position = new Vector2(spawnXPos, spawnYPos);
-			currentColumn = (currentColumn + 1) % columnPoolSize;
-		}
-	}
+	// 	if (GameController.instance.gameOver == false && timeSinceLastSpawned >= spawnRate) {
+	// 		timeSinceLastSpawned = 0;
+	// 		float spawnYPos = Random.Range(columnMin, columnMax);
+	// 		columns[currentColumn].transform.position = new Vector2(spawnXPos, spawnYPos);
+	// 		currentColumn = (currentColumn + 1) % columnPoolSize;
+	// 	}
+	// }
 }
