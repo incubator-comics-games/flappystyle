@@ -13,4 +13,11 @@ public class Slide : MonoBehaviour {
 			GameController.instance.BirdScored();
 		}
 	}
+
+	private void OnCollisionEnter2D(Collision2D col) {
+		bird = col.gameObject.GetComponent<Bird>();
+		if (bird != null) {
+			bird.setCanJump(true);
+		}
+	} 
 }
