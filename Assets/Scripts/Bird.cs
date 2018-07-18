@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour {
 
-	public float upForce = 200f;
+	public float upForce = 2000f;
 	private bool isDead = false;
 	private Rigidbody2D rb2d;
 	private Animator anim;
@@ -19,16 +19,19 @@ public class Bird : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isDead == false) {
-			rb2d.velocity = new Vector2(-GameController.instance.scrollSpeed, rb2d.velocity.y);
-			if (onWaterfall) {
-				rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-			}
+			rb2d.velocity = new Vector2(0, rb2d.velocity.y);
 			if (GameController.instance.GetInput()) {
-				setOnWaterfall(false);
-				rb2d.velocity = new Vector2(rb2d.velocity.x, 0);
+				// Testing no collision on going up 
+				rb2d.velocity = new Vector2(0, 0);
 				rb2d.AddForce(new Vector2(0, upForce));
-				anim.SetTrigger("Flap");
+				anim.SetTrigger("Flap");				
 			}
+			if (rb2d.velocity.y > 0) {
+				rb2d.gameObject.layer = 9;
+			} else {
+				rb2d.gameObject.layer = 8;
+			}
+			Debug.Log("Layer: " + rb2d.gameObject.layer, rb2d.gameObject);
 		}
 	}
 
@@ -44,7 +47,4 @@ public class Bird : MonoBehaviour {
 		}
 	}
 
-	public void setOnWaterfall(bool val){
-		onWaterfall = val;
-	}
 }
