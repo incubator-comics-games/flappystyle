@@ -9,7 +9,8 @@ public class Bird : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private Animator anim;
 	private bool onWaterfall = false;
-	private bool canJump = true;
+	// private bool canJump = true;
+	private int jumpCounter = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -21,12 +22,12 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		if (isDead == false) {
 			rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-			if (GameController.instance.GetInput() && canJump) {
+			if (GameController.instance.GetInput() && jumpCounter < 2) {
 				// Testing no collision on going up 
 				rb2d.velocity = new Vector2(0, 0);
 				rb2d.AddForce(new Vector2(0, upForce));
 				anim.SetTrigger("Flap");
-				setCanJump(false);				
+				incrementJumpCounter();				
 			}
 			if (rb2d.velocity.y > 0) {
 				rb2d.gameObject.layer = 9;
@@ -41,6 +42,7 @@ public class Bird : MonoBehaviour {
 
 		if (col.gameObject.tag == "Slide") {
 			isDead = false;
+			resetJumpCounter();
 		} else {
 			rb2d.velocity = Vector2.zero;
 			isDead = true;
@@ -49,8 +51,16 @@ public class Bird : MonoBehaviour {
 		}
 	}
 
-	public void setCanJump(bool val) {
-		canJump = val;
+	// public void setCanJump(bool val) {
+	// 	canJump = val;
+	// }
+
+	void incrementJumpCounter() {
+		jumpCounter++;
+	}
+
+	void resetJumpCounter() {
+		jumpCounter = 0;
 	}
 
 }

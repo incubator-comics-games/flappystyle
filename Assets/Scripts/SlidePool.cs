@@ -5,11 +5,11 @@ using UnityEngine;
 public class SlidePool : MonoBehaviour {
 
 	private GameObject[] slides;
-	public int slidePoolSize = 2;
+	public int slidePoolSize = 6;
 	public GameObject slidePrefab;
-	public float spawnRate = 3f;
-	public float slideMin = -2f;
-	public float slideMax = 4.5f;
+	public float spawnRate = 0.3777f;
+	public float slideMin = -4f;
+	public float slideMax = 5.5f;
 
 	private float spawnXPos = 10f;
 	private Vector2 objectPoolPosition = new Vector2(-15f, -25f);
