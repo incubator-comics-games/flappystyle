@@ -11,6 +11,8 @@ public class GameController : MonoBehaviour {
 	public float speedUpRate = 0.5f;
 	public int speedUpScore = 2;
 	public Text scoreText;
+
+	public Text debugText;
 	public GameObject gameOverText;
 	public bool gameOver = false;
 
@@ -45,7 +47,7 @@ public class GameController : MonoBehaviour {
 		if (score % speedUpScore == 0) {
 			SpeedUp();
 			if (debugMode) {
-				scoreText.text = "Speeding up! Speed: " + (-scrollSpeed).ToString() + " " + scoreText.text;
+				debugText.text = "Speeding up! Speed: " + (-scrollSpeed).ToString();
 			}
 		}
 	}
